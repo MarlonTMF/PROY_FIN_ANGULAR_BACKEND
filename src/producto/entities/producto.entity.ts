@@ -36,6 +36,6 @@ export class Producto {
 
     //       // Añadir la columna soft delete
     // @DeleteDateColumn()
-    // deletedAt: Date;
-      
+    // deletedAt?: Date;
+    
 }

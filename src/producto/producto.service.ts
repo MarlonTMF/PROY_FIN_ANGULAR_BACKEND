@@ -33,9 +33,22 @@ export class ProductoService {
     return await this.ProductoRepository.update(id, updateProductoDto);
   }
 
+  // async remove(id: number) {
+  //   return await this.ProductoRepository.softDelete({ id }); //  se le pasa el ID
+  // }
+
   async remove(id: number) {
-    return await this.ProductoRepository.softDelete({ id }); //  se le pasa el ID
-  }
+    // Utilizar delete en lugar de softDelete para eliminar realmente el registro
+    const result = await this.ProductoRepository.delete(id);
+
+    // Verificar si se eliminó el producto
+    if (result.affected === 0) {
+        throw new Error('Producto no encontrado');
+    }
+
+    return result;
+}
+
   async restore(id: number) {
     await this.ProductoRepository.restore(id); // Restaurar un producto eliminado
   }
