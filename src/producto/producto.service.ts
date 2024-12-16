@@ -4,6 +4,8 @@ import { UpdateProductoDto } from './dto/update-producto.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Producto } from './entities/producto.entity';
 import { Repository } from 'typeorm';
+import { Like } from 'typeorm';
+
 
 @Injectable()
 export class ProductoService {
@@ -14,6 +16,21 @@ export class ProductoService {
     @InjectRepository(Producto)
     private readonly ProductoRepository: Repository<Producto>,
   ){}
+
+    // Método para obtener relojes por categoría
+    async findByCategoria(categoria: string) {
+      return await this.ProductoRepository.find({ where: { categoria } });
+    }
+  
+    // Método para buscar relojes por nombre y caja
+    async findByNombreYCaja(nombre: string, caja: string) {
+      return await this.ProductoRepository.find({
+        where: {
+          nombre: Like(`%${nombre}%`),  // Filtrar por nombre (contiene el texto)
+          caja: Like(`%${caja}%`)        // Filtrar por caja (contiene el texto)
+        }
+      });
+    }
 
   async create(createProductoDto: CreateProductoDto) {
     const Producto = this.ProductoRepository.create(createProductoDto);
