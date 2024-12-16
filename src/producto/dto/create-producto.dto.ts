@@ -4,7 +4,7 @@ import { Type } from "class-transformer";
 export class CreateProductoDto {
 
     @IsString()
-    nombre!: string;
+    nombre?: string;
 
     @IsString()
     @IsOptional()

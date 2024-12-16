@@ -5,10 +5,10 @@ import { DeleteDateColumn } from "typeorm";
 export class Producto {
 
     @PrimaryGeneratedColumn()
-    id: number;
+    id?: number;
 
     @Column()
-    nombre: string;
+    nombre?: string;
 
     @Column()
     caja?: string;
@@ -34,8 +34,8 @@ export class Producto {
     @Column()
     categoria?:string;
 
-          // Añadir la columna soft delete
-    @DeleteDateColumn()
-    deletedAt: Date;
+    //       // Añadir la columna soft delete
+    // @DeleteDateColumn()
+    // deletedAt: Date;
       
 }
