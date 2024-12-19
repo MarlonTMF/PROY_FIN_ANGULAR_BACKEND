@@ -33,7 +33,8 @@ export class ProductoController {
   @Get('buscar')
   findByNombreYCaja(
     @Query('nombre') nombre: string,
-    @Query('caja') caja: string
+    @Query('caja') caja: 
+    string
   ) {
     return this.productoService.findByNombreYCaja(nombre, caja);
   }
