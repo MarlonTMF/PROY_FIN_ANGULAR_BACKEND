@@ -15,12 +15,13 @@ async function bootstrap() {
     }),
   );
 
-    // Habilitar CORS
+  // Configuración de CORS
   app.enableCors({
-      origin: 'http://localhost:4200',
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-      credentials: true,
-    });
+    origin: ['https://tecweb-proyfin.onrender.com', 'http://localhost:4200'], // Permitir estos orígenes
+    methods: 'GET,POST,PATCH,DELETE,OPTIONS', // Métodos HTTP permitidos
+    allowedHeaders: 'Content-Type, Authorization', // Cabeceras permitidas
+    credentials: true, // Permitir cookies si es necesario
+  });
 
   await app.listen(3000);
 }
